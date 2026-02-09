@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="WAS Insurance - Breaking the limits of traditional travel insurance. Get comprehensive travel insurance coverage for your next trip.">
+    <meta name="keywords" content="travel insurance, trip insurance, travel protection, insurance quotes">
+    <title>WAS Insurance - Find the Right Plan for You</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <a href="index.html" class="logo" aria-label="WAS Insurance Home">
+                    <img src="/images/LandingPageLogo.png" alt="WAS Insurance" class="logo-image">
+                </a>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item nav-item-expandable">
+                        <a href="info.html" class="nav-link">Travel Insurance</a>
+                        <button class="nav-expand-btn" aria-label="Expand Travel Insurance menu">
+                            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                                <path
+                                    d="M4.646 5.646a.5.5 0 0 1 .708 0L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </button>
+                        <ul class="nav-submenu">
+                            <li class="nav-subitem"><a href="info.html#plans" class="nav-sublink">Plans</a></li>
+                            <li class="nav-subitem"><a href="info.html#upgrades" class="nav-sublink">Upgrades</a></li>
+                            <li class="nav-subitem"><a href="info.html#traveller-type" class="nav-sublink">Traveller
+                                    Type</a></li>
+                            <li class="nav-subitem"><a href="info.html#trip-type" class="nav-sublink">Trip Type</a></li>
+                            <li class="nav-subitem"><a href="info.html#benefits" class="nav-sublink">Benefits</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#emergency" class="nav-link">Emergency Assistance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#customer-service" class="nav-link">Customer Service</a>
+                    </li>
+                </ul>
+
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-background">
+                <img src="public/images/Herosection1.jpg" alt="Family enjoying beach vacation" class="hero-image">
+            </div>
+
+            <div class="container">
+                <div class="hero-content">
+
+                    <h1 class="hero-tagline">BREAKING THE LIMITS OF TRADITIONAL TRAVEL INSURANCE</h1>
+                    <h2 class="hero-title">Find the Right Plan for You</h2>
+
+                    <div class="quote-card">
+                        <div class="trip-type-selector">
+                            <button class="trip-type-btn" id="singleTripBtn" aria-pressed="false">Single Trip</button>
+                            <button class="trip-type-btn active" id="multiTripBtn" aria-pressed="true">Multi
+                                Trip</button>
+                        </div>
+
+                        <form class="quote-form" id="quoteForm" role="form">
+                            <div class="form-group">
+                                <label for="destination" class="form-label">Where are you travelling?</label>
+                                <div class="destination-input-wrapper">
+                                    <input type="text" id="destination" class="form-control destination-input"
+                                        placeholder="Type or choose your destinations" autocomplete="off"
+                                        aria-describedby="destination-help">
+                                    <div class="selected-destinations" id="selectedDestinations">
+                                        <!-- Destination chips will be added dynamically -->
+                                    </div>
+                                    <div class="dropdown-results" id="dropdownResults" role="listbox"
+                                        aria-label="Destination suggestions"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="departDate" class="form-label">When do you leave?</label>
+                                    <input type="text" id="departDate" class="form-control" placeholder="DD/MM/YYYY"
+                                        pattern="\d{2}/\d{2}/\d{4}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="returnDate" class="form-label">When do you return?</label>
+                                    <input type="text" id="returnDate" class="form-control" placeholder="DD/MM/YYYY"
+                                        pattern="\d{2}/\d{2}/\d{4}" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="travellers" class="form-label">Current age of all Travellers?</label>
+                                <div class="traveller-input-group">
+                                    <button type="button" class="traveller-btn" id="addTravellerBtn"
+                                        aria-label="Add traveller">+</button>
+                                    <div class="traveller-ages" id="travellerAges">
+                                        <span class="age-display">23</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="promoCode" class="form-label">Promo Code</label>
+                                <input type="text" id="promoCode" class="form-control" placeholder="Enter code">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">GET A QUOTE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy;2025 Logo Ipsum. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy" class="footer-link">Privacy Policy</a>
+                <span class="footer-separator">|</span>
+                <a href="#terms" class="footer-link">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
