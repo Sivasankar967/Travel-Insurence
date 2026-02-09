@@ -646,7 +646,11 @@
             const quoteData = sessionStorage.getItem('quoteData');
             if (quoteData) {
                 this.loadData(JSON.parse(quoteData));
-            }
+
+            } else {
+                // No data in session storage - redirect to landing page
+                console.warn('No quote data found in session storage. Redirecting to landing page...');
+                window.location.href = '/index.html';
         }
 
 
