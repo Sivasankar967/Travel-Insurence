@@ -1,20 +1,3 @@
 {
-    "rewrites": [
-        {
-            "source": "/",
-            "destination": "/index.html"
-        },
-        {
-            "source": "/quote.html",
-            "destination": "/quote.html"
-        },
-        {
-            "source": "/info.html",
-            "destination": "/info.html"
-        },
-        {
-            "source": "/plan-details.html",
-            "destination": "/plan-details.html"
-        }
-    ]
+    "cleanUrls": true
 }
