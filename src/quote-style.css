@@ -681,6 +681,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    /* Space between Name and Price */
     border-right: 1px solid var(--gray-200);
     font-family: 'Saira', sans-serif;
     color: var(--gray-500);
@@ -896,5 +898,17 @@ header {
         background: none;
         border: none;
         cursor: pointer;
+    }
+
+    .progress-step {
+        width: 70px;
+        /* Reduced width to prevent overlapping labels */
+    }
+
+    .step-label {
+        font-size: 10px;
+        /* Smaller font for mobile */
+        white-space: normal;
+        /* Allow wrapping if necessary */
     }
 }
