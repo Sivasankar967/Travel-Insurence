@@ -679,10 +679,11 @@ header {
     background: none;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* Centered looking selector */
     align-items: center;
-    gap: 10px;
-    /* Space between Name and Price */
+    gap: 15px;
+    /* More breathing room for price */
     border-right: 1px solid var(--gray-200);
     font-family: 'Saira', sans-serif;
     color: var(--gray-500);
@@ -901,14 +902,17 @@ header {
     }
 
     .progress-step {
-        width: 70px;
-        /* Reduced width to prevent overlapping labels */
+        width: 65px;
+        /* Even smaller width */
+        margin: 0;
     }
 
     .step-label {
-        font-size: 10px;
-        /* Smaller font for mobile */
+        font-size: 9px;
+        /* Even smaller font */
+        line-height: 1.1;
         white-space: normal;
-        /* Allow wrapping if necessary */
+        text-align: center;
+        margin-top: 4px;
     }
 }
