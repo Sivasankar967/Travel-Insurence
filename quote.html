@@ -7,29 +7,29 @@
     <meta name="description"
         content="Compare travel insurance plans and select the right coverage for your trip. Choose between Voyager and Voyager Plus plans.">
     <title>Select Your Plan - WAS Insurance</title>
-    <link rel="stylesheet" href="/src/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/quote-style.css">
 </head>
 
 <body>
     <!-- Header -->
-    <header class="header header-dark">
-        <nav class="navbar navbar-simple" role="navigation" aria-label="Main navigation">
-            <div class="container">
-                <a href="index.html" class="back-link" aria-label="Go back">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="javascript:history.back()" class="back-link" aria-label="Go back">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
                     Back
                 </a>
-
-                <a href="index.html" class="logo logo-light logo-center" aria-label="WAS Insurance Home">
-                    <img src="/images/LandingPageLogo.png" alt="WAS Insurance" class="logo-image">
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="logo">
+                    <img src="/public/images/LandingPageLogo.png" alt="WAS Insurance" class="header-logo">
                 </a>
             </div>
+            <div class="nav-right"></div>
         </nav>
     </header>
 
@@ -38,19 +38,27 @@
         <div class="container">
             <div class="progress-steps" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="4">
                 <div class="progress-step completed">
-                    <div class="step-icon">✓</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
                     <span class="step-label">Get Quote</span>
                 </div>
                 <div class="progress-step active">
-                    <div class="step-icon">2</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-plane"></i>
+                    </div>
                     <span class="step-label">Plan Option</span>
                 </div>
                 <div class="progress-step">
-                    <div class="step-icon">3</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
                     <span class="step-label">Travellers</span>
                 </div>
                 <div class="progress-step">
-                    <div class="step-icon">4</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
                     <span class="step-label">Payment</span>
                 </div>
             </div>
@@ -60,190 +68,186 @@
     <!-- Main Content -->
     <main class="quote-page">
         <div class="container">
-            <!-- Trip Details Summary -->
-            <section class="trip-summary" aria-label="Trip details">
+            <!-- Trip Details Summary (Desktop) -->
+            <section class="trip-summary desktop-only" aria-label="Trip details">
                 <div class="trip-detail">
                     <span class="detail-label">Destination(s):</span>
-                    <span class="detail-value">Loading...</span>
+                    <span class="detail-value">Australia</span>
                 </div>
                 <div class="trip-detail">
                     <span class="detail-label">Dates:</span>
-                    <span class="detail-value">Loading...</span>
+                    <span class="detail-value">04/11/2025 - 13/11/2025</span>
                 </div>
                 <div class="trip-detail">
                     <span class="detail-label">Traveller Ages:</span>
-                    <span class="detail-value">Loading...</span>
+                    <span class="detail-value">23</span>
                 </div>
                 <button class="btn-text" aria-label="Edit trip details">Edit</button>
             </section>
 
-            <!-- Plan Comparison -->
-            <section class="plan-comparison">
+            <!-- Trip Details Card (Mobile) -->
+            <section class="trip-summary-card mobile-only" aria-label="Trip details">
+                <div class="summary-header">
+                    <h3 class="summary-title">Trip Details</h3>
+                    <button class="btn-edit" aria-label="Edit trip details">Edit</button>
+                </div>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span class="summary-label">Destination(s):</span>
+                        <span class="summary-value">Australia</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Dates:</span>
+                        <span class="summary-value">04/11/2025 - 13/11/2025</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Traveller Ages:</span>
+                        <span class="summary-value">23</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plan Selector (Mobile Only) -->
+            <section class="plan-selector-mobile mobile-only">
+                <button class="plan-tab">
+                    <span class="tab-name">VOYAGER</span>
+                    <span class="tab-price">$15.98</span>
+                </button>
+                <button class="plan-tab active">
+                    <span class="tab-name">VOYAGER PLUS</span>
+                    <span class="tab-price">$41.34</span>
+                </button>
+            </section>
+
+            <!-- Plan Comparison Grid -->
+            <section class="plan-comparison-grid">
                 <h1 class="sr-only">Select Your Travel Insurance Plan</h1>
 
-                <div class="plans-grid">
-                    <!-- Voyager Plan -->
-                    <article class="plan-card">
-                        <div class="plan-header">
-                            <div class="plan-icon voyager-icon">
-                                <span class="icon-shield">🛡️</span>
-                            </div>
-                            <h2 class="plan-name">VOYAGER</h2>
-                            <div class="plan-pricing">
-                                <span class="price-from">From $17.37</span>
-                                <span class="price-current">$15.98</span>
-                                <span class="price-label">Total Cost</span>
-                            </div>
-                            <p class="plan-disclaimer">Policy benefits listed below, per traveller limits apply</p>
+                <div class="comparison-grid">
+                    <!-- Header Row -->
+                    <div class="grid-header-empty"></div>
+
+                    <!-- Voyager Header -->
+                    <div class="grid-header-plan voyager-col">
+                        <div class="plan-icon-circle">
+                            <img src="/public/images/Backgroundlogo blue.png" alt="Voyager Logo" class="plan-logo">
                         </div>
-
-                        <div class="plan-benefits">
-                            <div class="benefit-row">
-                                <div class="benefit-name">
-                                    Cancellation or trip interruption
-                                    <button class="info-btn"
-                                        aria-label="More information about cancellation coverage">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">$1,000</div>
-                            </div>
-
-                            <div class="benefit-row">
-                                <div class="benefit-name">
-                                    Luggage and personal effects
-                                    <button class="info-btn"
-                                        aria-label="More information about luggage coverage">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">$500</div>
-                            </div>
-
-                            <div class="benefit-row benefit-unavailable">
-                                <div class="benefit-name">
-                                    Travel Delay
-                                    <button class="info-btn"
-                                        aria-label="More information about travel delay">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">not available</div>
-                            </div>
-
-                            <div class="benefit-row benefit-unavailable">
-                                <div class="benefit-name">
-                                    Personal Liability
-                                    <button class="info-btn"
-                                        aria-label="More information about personal liability">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">not available</div>
-                            </div>
+                        <h2 class="plan-name">VOYAGER</h2>
+                        <div class="plan-price">
+                            <span class="price-from">From $17.37</span>
+                            <span class="price-amount">$15.98</span>
+                            <span class="price-label">Total Cost</span>
                         </div>
+                        <p class="plan-disclaimer">Policy benefits listed below, per traveller limits apply</p>
+                    </div>
 
-                        <div class="optional-cover">
-                            <h3 class="optional-title">Optional Cover</h3>
-                            <div class="benefit-row benefit-unavailable">
-                                <div class="benefit-name">
-                                    Rental Vehicle Excess
-                                    <button class="info-btn"
-                                        aria-label="More information about rental vehicle excess">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">not available</div>
-                            </div>
+                    <!-- Voyager Plus Header -->
+                    <div class="grid-header-plan plus-col">
+                        <div class="plan-icon-circle plus-icon">
+                            <img src="/public/images/Backgroundlogo orange.png" alt="Voyager Plus Logo"
+                                class="plan-logo">
                         </div>
-
-                        <div class="plan-footer">
-                            <a href="plan-details.html" class="btn btn-outline btn-block">CHOOSE PLAN</a>
-                            <a href="#policy-info" class="link-text">View Policy Information</a>
+                        <h2 class="plan-name">VOYAGER PLUS</h2>
+                        <div class="plan-price">
+                            <span class="price-from">From $44.94</span>
+                            <span class="price-amount">$41.34</span>
+                            <span class="price-label">Total Cost</span>
                         </div>
-                    </article>
+                        <p class="plan-disclaimer">Policy benefits listed below, per traveller limits apply</p>
+                    </div>
 
-                    <!-- Voyager Plus Plan -->
-                    <article class="plan-card plan-featured">
-                        <div class="plan-header">
-                            <div class="plan-icon voyager-plus-icon">
-                                <span class="icon-shield">🛡️</span>
-                            </div>
-                            <h2 class="plan-name">VOYAGER PLUS</h2>
-                            <div class="plan-pricing">
-                                <span class="price-from">From $44.94</span>
-                                <span class="price-current price-featured">$41.34</span>
-                                <span class="price-label">Total Cost</span>
-                            </div>
-                            <p class="plan-disclaimer">Policy benefits listed below, per traveller limits apply</p>
+                    <!-- Row 1: Cancellation -->
+                    <div class="grid-row">
+                        <div class="feature-name">
+                            Cancellation or trip interruption
+                            <button class="info-btn" aria-label="More info"><i
+                                    class="fa-solid fa-circle-info"></i></button>
                         </div>
-
-                        <div class="plan-benefits">
-                            <div class="benefit-row">
-                                <div class="benefit-name">
-                                    Cancellation or trip interruption
-                                    <button class="info-btn"
-                                        aria-label="More information about cancellation coverage">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">
-                                    <select class="benefit-select" aria-label="Select cancellation coverage amount">
-                                        <option value="4000">$4,000</option>
-                                        <option value="6000">$6,000</option>
-                                        <option value="8000">$8,000</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="benefit-row">
-                                <div class="benefit-name">
-                                    Luggage and personal effects
-                                    <button class="info-btn"
-                                        aria-label="More information about luggage coverage">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">
-                                    <select class="benefit-select" aria-label="Select luggage coverage amount">
-                                        <option value="1000">$1,000</option>
-                                        <option value="2000">$2,000</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="benefit-row">
-                                <div class="benefit-name">
-                                    Travel Delay
-                                    <button class="info-btn"
-                                        aria-label="More information about travel delay">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">$1,000</div>
-                            </div>
-
-                            <div class="benefit-row">
-                                <div class="benefit-name">
-                                    Personal Liability
-                                    <button class="info-btn"
-                                        aria-label="More information about personal liability">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">$2,500,000</div>
-                            </div>
+                        <div class="plan-value voyager-col bg-white">$1,000</div>
+                        <div class="plan-value plus-col">
+                            <select class="benefit-select">
+                                <option value="4000">$4,000</option>
+                                <option value="6000">$6,000</option>
+                            </select>
                         </div>
+                    </div>
 
-                        <div class="optional-cover">
-                            <h3 class="optional-title">Optional Cover</h3>
-                            <div class="benefit-row">
-                                <div class="benefit-name">
-                                    Rental Vehicle Excess
-                                    <button class="info-btn"
-                                        aria-label="More information about rental vehicle excess">ℹ️</button>
-                                </div>
-                                <div class="benefit-value">
-                                    <select class="benefit-select" aria-label="Select rental vehicle excess coverage">
-                                        <option value="">Not Selected</option>
-                                        <option value="2500">$2,500</option>
-                                        <option value="5000">$5,000</option>
-                                    </select>
-                                </div>
-                            </div>
+                    <!-- Row 2: Luggage -->
+                    <div class="grid-row">
+                        <div class="feature-name">
+                            Luggage and personal effects
+                            <button class="info-btn" aria-label="More info"><i
+                                    class="fa-solid fa-circle-info"></i></button>
                         </div>
-
-                        <div class="plan-footer">
-                            <a href="plan-details.html" class="btn btn-primary btn-block">CHOOSE PLAN</a>
-                            <a href="#policy-info" class="link-text">View Policy Information</a>
+                        <div class="plan-value voyager-col bg-white">$500</div>
+                        <div class="plan-value plus-col">
+                            <select class="benefit-select">
+                                <option value="1000">$1,000</option>
+                                <option value="2000">$2,000</option>
+                            </select>
                         </div>
-                    </article>
-                </div>
+                    </div>
 
-                <div class="benefits-footer">
-                    <a href="#all-benefits" class="link-primary">Show all benefits</a>
+                    <!-- Row 3: Travel Delay -->
+                    <div class="grid-row">
+                        <div class="feature-name">
+                            Travel Delay
+                            <button class="info-btn" aria-label="More info"><i
+                                    class="fa-solid fa-circle-info"></i></button>
+                        </div>
+                        <div class="plan-value faded voyager-col">not available</div>
+                        <div class="plan-value plus-col">$1,000</div>
+                    </div>
+
+                    <!-- Row 4: Personal Liability -->
+                    <div class="grid-row">
+                        <div class="feature-name">
+                            Personal Liability
+                            <button class="info-btn" aria-label="More info"><i
+                                    class="fa-solid fa-circle-info"></i></button>
+                        </div>
+                        <div class="plan-value faded voyager-col">not available</div>
+                        <div class="plan-value plus-col">$2,500,000</div>
+                    </div>
+
+                    <!-- Optional Cover Heading -->
+                    <div class="grid-row-heading">
+                        <div class="feature-heading">Optional Cover</div>
+                        <div class="plan-empty voyager-col"></div>
+                        <div class="plan-empty plus-col"></div>
+                    </div>
+
+                    <!-- Row 5: Rental Vehicle -->
+                    <div class="grid-row">
+                        <div class="feature-name">
+                            Rental Vehicle Excess
+                            <button class="info-btn" aria-label="More info"><i
+                                    class="fa-solid fa-circle-info"></i></button>
+                        </div>
+                        <div class="plan-value faded voyager-col">not available</div>
+                        <div class="plan-value plus-col">
+                            <select class="benefit-select">
+                                <option value="">Not Selected</option>
+                                <option value="2500">$2,500</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Footer Actions -->
+                    <div class="grid-footer">
+                        <div class="footer-empty">
+                            <a href="#all-benefits" class="link-primary">Show All Benefits</a>
+                        </div>
+                        <div class="plan-footer voyager-col">
+                            <button class="btn btn-navy">CHOOSE PLAN</button>
+                            <a href="#" class="link-text">View Policy Information</a>
+                        </div>
+                        <div class="plan-footer plus-col">
+                            <button class="btn btn-orange">CHOOSE PLAN</button>
+                            <a href="#" class="link-text">View Policy Information</a>
+                            <a href="#all-benefits" class="btn-show-all mobile-only">Show all benefits</a>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -251,7 +255,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="container footer-bottom-content">
             <p class="footer-text">&copy;2025 Logo Ipsum. All Rights Reserved.</p>
             <div class="footer-links">
                 <a href="#privacy" class="footer-link">Privacy Policy</a>
@@ -260,8 +264,6 @@
             </div>
         </div>
     </footer>
-
-    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

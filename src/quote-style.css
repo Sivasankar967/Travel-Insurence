@@ -1,0 +1,900 @@
+@charset "UTF-8";
+
+/* Extracted from quote.html */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #f5a623;
+    --navy-dark: #0B2347;
+    /* Updated to user spec */
+    --navy: #2c3e5c;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --white: #ffffff;
+    --black: #000000;
+    --orange: #F6AE00;
+    /* Updated to user spec */
+    --orange-hover: #e5a100;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: var(--gray-800);
+    background-color: var(--gray-100);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mobile-only {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block !important;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1320px;
+    /* Updated to accommodate 1320px trip summary */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: var(--navy-dark);
+    padding: 15px 0;
+    position: relative;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-left,
+.nav-right {
+    flex: 1;
+}
+
+.nav-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+}
+
+.header-logo {
+    height: 35px;
+    /* Restored desktop height */
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* Progress Bar */
+.progress-container {
+    background-color: var(--white);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 1320px;
+    /* Restored desktop width */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Connecting Line Background */
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background-color: var(--gray-200);
+    z-index: 1;
+}
+
+.progress-steps::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 40px;
+    width: 33.33%;
+    /* Precisely reaches step 2 */
+    height: 2px;
+    background-color: var(--primary-color);
+    z-index: 1;
+}
+
+.progress-step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100px;
+    /* Restored desktop width */
+}
+
+/* Step Circle */
+.step-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--white);
+    /* Masks the line behind the circle */
+    border: 2px solid var(--gray-300);
+    color: var(--gray-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.step-icon i {
+    font-size: 12px;
+}
+
+.step-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-500);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Active Step Icon (Plan Option) */
+.progress-step.active .step-icon {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--white);
+}
+
+.progress-step.active .step-label {
+    color: var(--navy-dark);
+    font-weight: 700;
+}
+
+/* Completed State */
+.progress-step.completed .step-icon {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.progress-step.completed .step-label {
+    color: var(--navy-dark);
+}
+
+/* Main Content */
+.quote-page {
+    padding: 0;
+    /* Removing padding to control spacing via trip-summary margin */
+    min-height: calc(100vh - 200px);
+}
+
+/* Trip Details (Desktop) */
+.trip-summary {
+    display: flex;
+    /* Visible on desktop */
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 1320px;
+    height: 29px;
+    margin: 60px auto 30px;
+    padding: 0 40px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Trip Details Card (Mobile) - Hidden on desktop */
+.trip-summary-card {
+    display: none;
+    background-color: var(--white);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid var(--gray-200);
+}
+
+.trip-detail {
+    display: flex;
+    gap: 8px;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.detail-value {
+    color: var(--gray-600);
+}
+
+.btn-text {
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 8px;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-text:hover {
+    background-color: var(--gray-100);
+}
+
+/* Plan Comparison Grid */
+.plan-comparison-grid {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.grid-header-empty {
+    padding: 20px;
+    border-right: 1px solid var(--gray-200);
+}
+
+.grid-header-plan {
+    padding: 20px;
+    text-align: center;
+    border-right: 1px solid var(--gray-200);
+}
+
+.grid-header-plan:last-child {
+    border-right: none;
+}
+
+/* Voyager Column Shading */
+.voyager-col {
+    background-color: #EEEEEE !important;
+}
+
+.voyager-col.bg-white {
+    background-color: var(--white) !important;
+}
+
+.plan-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: transparent;
+    /* Removed white background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    overflow: hidden;
+    padding: 0;
+    /* Removing padding to let logo fill circle if needed */
+}
+
+.plan-logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.plan-name {
+    font-family: 'Saira', sans-serif;
+    font-size: 27.2px;
+    font-weight: 400;
+    line-height: 32.64px;
+    color: var(--navy-dark);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.plan-price {
+    margin-bottom: 10px;
+}
+
+.price-from {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    text-decoration: line-through;
+    display: block;
+}
+
+.price-amount {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    display: block;
+}
+
+.plus-col .price-amount {
+    color: var(--orange);
+}
+
+.price-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.plan-disclaimer {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: 10px;
+}
+
+.grid-row {
+    display: contents;
+}
+
+.feature-name {
+    padding: 15px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--navy-dark);
+    /* Updated to match Figma navy */
+    border-right: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info-btn {
+    background: none;
+    border: none;
+    color: #878787;
+    /* Specified user color */
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: rgba(0, 102, 204, 0.05);
+}
+
+.summary-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Increased gap for better spacing */
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    /* Spacing between label and value */
+}
+
+.info-btn:hover {
+    background-color: var(--gray-100);
+    color: var(--primary-color);
+}
+
+.plan-value {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--navy-dark);
+    /* Updated to match Figma navy */
+}
+
+.plan-value:last-child {
+    border-right: none;
+}
+
+.plan-value.faded {
+    color: var(--gray-400);
+    font-style: italic;
+}
+
+.benefit-select {
+    width: 160px;
+    height: 35px;
+    padding: 0 8px;
+    border: 1px solid var(--gray-300);
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 35px;
+    /* Vertically center text */
+    text-align: center;
+    color: var(--navy-dark);
+    /* Updated to match Figma navy */
+    background-color: var(--white);
+    cursor: pointer;
+    appearance: none;
+    /* Clean look */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230B2347' d='M6 8.825L1.175 4 2.585 2.585 6 6l3.415-3.415L10.825 4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.benefit-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.grid-row-heading {
+    display: contents;
+}
+
+.feature-heading {
+    padding: 15px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--navy-dark);
+    border-right: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    background-color: var(--gray-50);
+}
+
+.plan-empty {
+    padding: 15px 20px;
+    border-right: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    background-color: var(--gray-50);
+}
+
+.plan-empty:last-child {
+    border-right: none;
+}
+
+.grid-footer {
+    display: contents;
+}
+
+.footer-empty {
+    padding: 20px;
+    border-right: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+}
+
+.link-primary {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+}
+
+.link-primary:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.plan-footer {
+    padding: 20px;
+    text-align: center;
+    border-right: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centering the button and link */
+    gap: 15px;
+}
+
+.plan-footer:last-child {
+    border-right: none;
+}
+
+.btn {
+    width: 160.97px;
+    height: 54px;
+    margin-top: 15px;
+    /* From user 'top: 15px' specification */
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-navy {
+    background-color: var(--navy-dark);
+    color: var(--white);
+}
+
+.btn-navy:hover {
+    background-color: #0f1929;
+}
+
+.btn-orange {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.btn-orange:hover {
+    background-color: var(--orange-hover);
+}
+
+.link-text {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.9375rem;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--navy-dark);
+    color: var(--white);
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1320px;
+    /* For desktop */
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-text {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.footer-link:hover {
+    color: var(--white);
+}
+
+.footer-separator {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive Design */
+/* Plan Selector Mobile */
+.plan-selector-mobile {
+    display: none;
+    background-color: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.plan-tab {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 1px solid var(--gray-200);
+    font-family: 'Saira', sans-serif;
+    color: var(--gray-500);
+}
+
+.plan-tab:last-child {
+    border-right: none;
+}
+
+.plan-tab.active {
+    background-color: var(--white);
+    color: var(--navy-dark);
+}
+
+.plan-tab .tab-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.plan-tab .tab-price {
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.plan-tab.active .tab-price {
+    color: var(--navy-dark);
+}
+
+.plan-selector-mobile .plan-tab:nth-child(2).active .tab-price {
+    color: var(--orange);
+}
+
+.btn-show-all {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Plan Card Mobile Adaptation */
+@media (max-width: 768px) {
+    .plan-selector-mobile {
+        display: flex;
+    }
+
+    .trip-summary-card {
+        display: block;
+    }
+
+    .trip-summary {
+        display: none;
+        /* Hide old desktop summary */
+    }
+
+    .plan-comparison-grid {
+        background-color: var(--white);
+        border: 1px solid var(--gray-200);
+        border-radius: 4px;
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
+    .comparison-grid {
+        display: block;
+        /* Stack instead of grid */
+    }
+
+    .grid-header-empty,
+    .grid-header-plan:not(.plus-col),
+    /* Hide Voyager header if Plus is active */
+    .plan-value:not(.plus-col),
+    /* Hide Voyager values if Plus is active */
+    .plan-empty:not(.plus-col),
+    .plan-footer:not(.plus-col),
+    .footer-empty {
+        display: none !important;
+    }
+
+    /* Make active plan header look like Figma card top */
+    .grid-header-plan.plus-col {
+        border: none;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .grid-header-plan .plan-icon-circle {
+        width: 120px;
+        height: 120px;
+        background-color: var(--orange) !important;
+        margin-bottom: 20px;
+    }
+
+    .grid-header-plan .plan-logo {
+        width: 60px;
+    }
+
+    .grid-header-plan .plan-name {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .grid-header-plan .plan-price .price-from {
+        font-size: 1.25rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .grid-header-plan .plan-price .price-amount {
+        font-size: 3rem;
+        line-height: 1;
+        color: var(--orange);
+    }
+
+    .grid-header-plan .plan-price .price-label {
+        display: block;
+        margin-top: 10px;
+        font-size: 1rem;
+        color: var(--gray-500);
+    }
+
+    .grid-header-plan .plan-price .price-amount::after {
+        content: ".34";
+        font-size: 1.5rem;
+        vertical-align: super;
+    }
+
+    /* Grid Rows as 2-column benefit table */
+    .grid-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--gray-100) !important;
+    }
+
+    .feature-name {
+        display: block;
+        width: 60%;
+        padding: 0;
+        border: none;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+    .plan-value {
+        width: 40%;
+        padding: 0;
+        border: none;
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .benefit-select {
+        width: 140px;
+    }
+
+    .grid-row-heading {
+        display: block;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .feature-heading {
+        text-align: left;
+        padding: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--navy-dark);
+        border: none;
+    }
+
+    .grid-footer {
+        display: block;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .plan-footer {
+        padding: 0;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Extra links at bottom */
+    .plan-footer .link-text {
+        display: block;
+        margin-top: 15px;
+    }
+
+    .footer-actions-mobile {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .btn-show-all {
+        color: var(--primary-color);
+        text-decoration: underline;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+}

@@ -145,59 +145,72 @@
     class DestinationSelector {
         constructor() {
             this.input = document.getElementById('destination');
+            this.wrapper = document.querySelector('.destination-input-wrapper');
             this.dropdown = document.getElementById('dropdownResults');
             this.selectedContainer = document.getElementById('selectedDestinations');
             this.selectedDestinations = [];
             this.activeIndex = -1;
 
-            // Sample destinations data
+            // Simple data structure mimicking the Figma "Popular", "Europe", etc.
             this.destinations = [
-                { name: 'Bali', country: 'Indonesia', region: 'Asia' },
-                { name: 'Austria', country: 'Austria', region: 'Europe' },
-                { name: 'Australia', country: 'Australia', region: 'Oceania' },
-                { name: 'New Zealand', country: 'New Zealand', region: 'Oceania' },
-                { name: 'USA', country: 'United States', region: 'North America' },
-                { name: 'United Kingdom', country: 'United Kingdom', region: 'Europe' },
-                { name: 'World Wide', country: 'Multiple', region: 'Global' },
-                { name: 'All of Europe', country: 'Multiple', region: 'Europe' },
-                { name: 'All of Asia', country: 'Multiple', region: 'Asia' },
-                { name: 'Canada', country: 'Canada', region: 'North America' },
-                { name: 'Japan', country: 'Japan', region: 'Asia' },
-                { name: 'Thailand', country: 'Thailand', region: 'Asia' },
-                { name: 'France', country: 'France', region: 'Europe' },
-                { name: 'Italy', country: 'Italy', region: 'Europe' },
-                { name: 'Spain', country: 'Spain', region: 'Europe' },
+                {
+                    category: 'Popular Destinations',
+                    items: [
+                        { name: 'Bali', country: 'Indonesia' },
+                        { name: 'New Zealand', country: '' },
+                        { name: 'USA', country: 'United States' },
+                        { name: 'United Kingdom', country: '' }
+                    ]
+                },
+                {
+                    category: 'World Wide',
+                    items: [
+                        { name: 'World Wide', country: '' }
+                    ]
+                },
+                {
+                    category: 'All of Europe',
+                    items: [
+                        { name: 'All of Europe', country: '' },
+                        { name: 'France', country: 'France' },
+                        { name: 'Italy', country: 'Italy' },
+                        { name: 'Spain', country: 'Spain' },
+                        { name: 'Austria', country: 'Austria' }
+                    ]
+                },
+                {
+                    category: 'All of Asia',
+                    items: [
+                        { name: 'All of Asia', country: '' },
+                        { name: 'Japan', country: 'Japan' },
+                        { name: 'Thailand', country: 'Thailand' }
+                    ]
+                }
             ];
 
             this.init();
         }
 
         init() {
-            if (!this.input || !this.dropdown) return;
+            if (!this.input || !this.dropdown || !this.wrapper) return;
 
             // Load pre-selected destinations from HTML
             this.loadPreselectedDestinations();
 
             this.input.addEventListener('input', debounce((e) => {
-                console.log('Searching for:', e.target.value);
-                if (!e.target.value.trim()) {
-                    this.hideDropdown();
-                    return;
-                }
                 this.handleSearch(e.target.value);
             }, 100));
 
             this.input.addEventListener('focus', () => {
-                if (this.input.value.trim()) {
-                    this.handleSearch(this.input.value);
-                }
+                this.handleSearch(this.input.value);
             });
 
             // Keyboard navigation
             this.input.addEventListener('keydown', (e) => this.handleKeydown(e));
 
+            // Close when clicking outside
             document.addEventListener('click', (e) => {
-                if (!e.target.closest('.destination-input-wrapper')) {
+                if (!this.wrapper.contains(e.target)) {
                     this.hideDropdown();
                 }
             });
@@ -224,6 +237,10 @@
                     if (this.activeIndex >= 0) {
                         e.preventDefault();
                         items[this.activeIndex].click();
+                    }
+                    else if (items.length > 0 && this.input.value.trim() !== "") {
+                        // Optional: Auto-select top result if typing? 
+                        // For now, require explicit selection
                     }
                     break;
                 case 'Escape':
@@ -257,46 +274,73 @@
         }
 
         handleSearch(query) {
-            if (!query.trim()) {
-                this.hideDropdown();
-                return;
+            const normalizedQuery = query.toLowerCase().trim();
+
+            // If empty query, show all (excluding selected)
+            let filteredData = [];
+
+            if (!normalizedQuery) {
+                // Show all, filtering out selected
+                filteredData = this.destinations.map(cat => ({
+                    category: cat.category,
+                    items: cat.items.filter(item => !this.selectedDestinations.includes(item.name))
+                })).filter(cat => cat.items.length > 0);
+            } else {
+                // Filter by query
+                filteredData = this.destinations.map(cat => ({
+                    category: cat.category,
+                    items: cat.items.filter(item =>
+                        item.name.toLowerCase().includes(normalizedQuery) &&
+                        !this.selectedDestinations.includes(item.name)
+                    )
+                })).filter(cat => cat.items.length > 0);
             }
 
-            const results = this.destinations.filter(dest =>
-                dest.name.toLowerCase().includes(query.toLowerCase()) &&
-                !this.selectedDestinations.includes(dest.name)
-            );
-
-            if (results.length === 0) {
+            if (filteredData.length === 0) {
                 this.showEmptyState();
             } else {
-                this.showResults(results);
+                this.renderDropdown(filteredData);
             }
         }
 
-        showResults(results) {
+        renderDropdown(data) {
             this.dropdown.innerHTML = '';
             this.activeIndex = -1;
-
-            results.forEach(dest => {
-                const item = document.createElement('div');
-                item.className = 'dropdown-item';
-                item.textContent = `${dest.name} (${dest.country})`;
-                item.setAttribute('role', 'option');
-                item.addEventListener('click', () => this.selectDestination(dest.name));
-                this.dropdown.appendChild(item);
-            });
-
             this.dropdown.classList.add('active');
+            this.wrapper.classList.add('open');
+
+            data.forEach(cat => {
+                const header = document.createElement('div');
+                header.className = 'dropdown-category';
+                header.textContent = cat.category;
+                this.dropdown.appendChild(header);
+
+                cat.items.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = 'dropdown-item';
+                    const displayText = item.country ? `${item.name} [${item.country}]` : item.name;
+                    el.textContent = displayText;
+                    el.setAttribute('role', 'option');
+
+                    el.addEventListener('click', () => {
+                        this.selectDestination(item.name);
+                        this.input.focus(); // Keep focus for continued typing/interaction
+                    });
+
+                    this.dropdown.appendChild(el);
+                });
+            });
         }
 
         showEmptyState() {
-            this.dropdown.innerHTML = '<div class="dropdown-item">Destination not found</div>';
+            this.dropdown.innerHTML = '<div class="dropdown-empty">Destination not found</div>';
             this.dropdown.classList.add('active');
+            this.wrapper.classList.add('open');
         }
 
         hideDropdown() {
             this.dropdown.classList.remove('active');
+            this.wrapper.classList.remove('open');
             this.activeIndex = -1;
         }
 
@@ -306,7 +350,8 @@
             this.selectedDestinations.push(name);
             this.addChip(name);
             this.input.value = '';
-            this.hideDropdown();
+            // Refresh dropdown to remove selected item
+            this.handleSearch('');
         }
 
         addChip(name) {
@@ -400,23 +445,33 @@
     class TravellerAgeHandler {
         constructor() {
             this.addBtn = document.getElementById('addTravellerBtn');
+            this.input = document.querySelector('.age-input');
             this.container = document.getElementById('travellerAges');
-            this.ages = [23]; // Default age
+            this.ages = [];
             this.init();
         }
 
         init() {
             if (!this.addBtn || !this.container) return;
 
-            this.addBtn.addEventListener('click', () => this.showAgePrompt());
+            this.addBtn.addEventListener('click', () => this.addAgeFromInput());
+
+            if (this.input) {
+                this.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.addAgeFromInput();
+                    }
+                });
+            }
         }
 
-        showAgePrompt() {
-            const age = prompt('Enter traveller age:');
+        addAgeFromInput() {
+            if (!this.input) return;
+            const ageVal = this.input.value.trim();
+            if (!ageVal) return;
 
-            if (age === null) return; // User cancelled
-
-            const ageNum = parseInt(age, 10);
+            const ageNum = parseInt(ageVal, 10);
 
             if (isNaN(ageNum) || ageNum < 0 || ageNum > 120) {
                 alert('Please enter a valid age between 0 and 120');
@@ -424,6 +479,8 @@
             }
 
             this.addAge(ageNum);
+            this.input.value = '';
+            this.input.focus();
         }
 
         addAge(age) {
@@ -646,13 +703,12 @@
             const quoteData = sessionStorage.getItem('quoteData');
             if (quoteData) {
                 this.loadData(JSON.parse(quoteData));
-
             } else {
                 // No data in session storage - redirect to landing page
                 console.warn('No quote data found in session storage. Redirecting to landing page...');
                 window.location.href = '/index.html';
+            }
         }
-
 
         loadData(data) {
             // Update trip details summary - works for both quote.html and plan-details.html

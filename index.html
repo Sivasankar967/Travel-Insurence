@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="/src/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Saira:wght@400&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -19,33 +21,57 @@
     <header class="header">
         <nav class="navbar" role="navigation" aria-label="Main navigation">
             <div class="container">
-                <a href="index.html" class="logo" aria-label="WAS Insurance Home">
-                    <img src="/images/LandingPageLogo.png" alt="WAS Insurance" class="logo-image">
+                <a href="index.html" class="logo" aria-label="Logoipsum Home">
+                    <!-- Placeholder icon for logoipsum -->
+                    <img src="/images/LandingPageLogo.png" alt="Logoipsum" class="logo-icon">
+
                 </a>
 
                 <ul class="nav-menu" id="navMenu">
                     <li class="nav-item nav-item-expandable">
-                        <a href="info.html" class="nav-link">Travel Insurance</a>
-                        <button class="nav-expand-btn" aria-label="Expand Travel Insurance menu">
-                            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
-                                <path
-                                    d="M4.646 5.646a.5.5 0 0 1 .708 0L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z" />
+                        <a href="javascript:void(0)" class="nav-link">
+                            Travel Insurance
+                            <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 1L5 5L9 1" />
                             </svg>
-                        </button>
-                        <ul class="nav-submenu">
-                            <li class="nav-subitem"><a href="info.html#plans" class="nav-sublink">Plans</a></li>
-                            <li class="nav-subitem"><a href="info.html#upgrades" class="nav-sublink">Upgrades</a></li>
-                            <li class="nav-subitem"><a href="info.html#traveller-type" class="nav-sublink">Traveller
-                                    Type</a></li>
-                            <li class="nav-subitem"><a href="info.html#trip-type" class="nav-sublink">Trip Type</a></li>
-                            <li class="nav-subitem"><a href="info.html#benefits" class="nav-sublink">Benefits</a></li>
-                        </ul>
+                        </a>
+                        <div class="mega-menu">
+                            <div class="container mega-menu-container">
+                                <div class="mega-menu-image">
+                                    <img src="public/images/Travelinsurenceimage1.png" alt="Family moving in"
+                                        class="menu-image">
+                                </div>
+                                <div class="mega-menu-content">
+                                    <h3 class="menu-heading">Travel Insurance</h3>
+                                    <p class="menu-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+                                        gravida
+                                        tincidunt mi, in bibendum sapien pellentesque vitae.</p>
+                                    <a href="quote.html" class="btn btn-menu-cta">GET A QUOTE</a>
+                                </div>
+                                <div class="mega-menu-links">
+                                    <ul class="menu-link-list">
+                                        <li><a href="#" class="menu-link">Plans</a></li>
+                                        <li><a href="#" class="menu-link">Upgrades</a></li>
+                                        <li><a href="#" class="menu-link">Traveller Type</a></li>
+                                        <li><a href="#" class="menu-link">Trip Type</a></li>
+                                        <li><a href="#" class="menu-link last">Benefits</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a href="#emergency" class="nav-link">Emergency Assistance</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#customer-service" class="nav-link">Customer Service</a>
+                    <li class="nav-item nav-item-expandable">
+                        <a href="#customer-service" class="nav-link">
+                            Customer Service
+                            <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 1L5 5L9 1" />
+                            </svg>
+                        </a>
                     </li>
                 </ul>
 
@@ -62,86 +88,89 @@
     <main>
         <section class="hero-section">
             <div class="hero-background">
-                <img src="public/images/Herosection1.jpg" alt="Family enjoying beach vacation" class="hero-image">
+                <img src="public/images/HeroSectionupdateimage.png" alt="Family enjoying beach vacation"
+                    class="hero-image">
             </div>
 
             <div class="container">
                 <div class="hero-content">
+                    <div class="hero-text-center">
+                        <h1 class="hero-tagline">BREAKING THE LIMITS OF TRADITIONAL TRAVEL INSURANCE</h1>
+                        <h2 class="hero-title">Find the Right Plan for You</h2>
+                    </div>
 
-                    <h1 class="hero-tagline">BREAKING THE LIMITS OF TRADITIONAL TRAVEL INSURANCE</h1>
-                    <h2 class="hero-title">Find the Right Plan for You</h2>
-
-                    <div class="quote-card">
-                        <div class="trip-type-selector">
-                            <button class="trip-type-btn" id="singleTripBtn" aria-pressed="false">Single Trip</button>
-                            <button class="trip-type-btn active" id="multiTripBtn" aria-pressed="true">Multi
-                                Trip</button>
+                    <div class="quote-widget">
+                        <div class="trip-type-tabs">
+                            <button class="trip-tab" id="singleTripBtn" aria-pressed="false">Single Trip</button>
+                            <button class="trip-tab active" id="multiTripBtn" aria-pressed="true">Multi Trip</button>
                         </div>
 
-                        <form class="quote-form" id="quoteForm" role="form">
-                            <div class="form-group">
-                                <label for="destination" class="form-label">Where are you travelling?</label>
-                                <div class="destination-input-wrapper">
-                                    <input type="text" id="destination" class="form-control destination-input"
-                                        placeholder="Type or choose your destinations" autocomplete="off"
-                                        aria-describedby="destination-help">
-                                    <div class="selected-destinations" id="selectedDestinations">
-                                        <!-- Destination chips will be added dynamically -->
+                        <div class="quote-form-container">
+                            <form class="quote-form" id="quoteForm" role="form">
+                                <div class="form-group">
+                                    <label for="destination" class="form-label">Where are you travelling?</label>
+                                    <div class="destination-input-wrapper">
+                                        <div class="input-with-icon">
+                                            <input type="text" id="destination" class="form-control destination-input"
+                                                placeholder="Type or choose your destinations" autocomplete="off"
+                                                aria-describedby="destination-help">
+                                            <span class="input-icon-end">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="selected-destinations" id="selectedDestinations">
+                                            <!-- Destination chips will be added dynamically -->
+                                        </div>
+                                        <div class="dropdown-results" id="dropdownResults" role="listbox"
+                                            aria-label="Destination suggestions"></div>
                                     </div>
-                                    <div class="dropdown-results" id="dropdownResults" role="listbox"
-                                        aria-label="Destination suggestions"></div>
                                 </div>
-                            </div>
 
-                            <div class="form-row">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="departDate" class="form-label">When do you leave?</label>
+                                        <input type="text" id="departDate" class="form-control" placeholder="DD/MM/YYYY"
+                                            pattern="\d{2}/\d{2}/\d{4}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="returnDate" class="form-label">When do you return?</label>
+                                        <input type="text" id="returnDate" class="form-control" placeholder="DD/MM/YYYY"
+                                            pattern="\d{2}/\d{2}/\d{4}" required>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
-                                    <label for="departDate" class="form-label">When do you leave?</label>
-                                    <input type="text" id="departDate" class="form-control" placeholder="DD/MM/YYYY"
-                                        pattern="\d{2}/\d{2}/\d{4}" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="returnDate" class="form-label">When do you return?</label>
-                                    <input type="text" id="returnDate" class="form-control" placeholder="DD/MM/YYYY"
-                                        pattern="\d{2}/\d{2}/\d{4}" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="travellers" class="form-label">Current age of all Travellers?</label>
-                                <div class="traveller-input-group">
-                                    <button type="button" class="traveller-btn" id="addTravellerBtn"
-                                        aria-label="Add traveller">+</button>
+                                    <label for="travellers" class="form-label">Current age of all Travellers?</label>
+                                    <div class="traveller-input-group">
+                                        <input type="number" class="form-control age-input" placeholder="Age"
+                                            aria-label="Traveller Age">
+                                        <button type="button" class="traveller-add-btn" id="addTravellerBtn"
+                                            aria-label="Add traveller">+</button>
+                                    </div>
                                     <div class="traveller-ages" id="travellerAges">
-                                        <span class="age-display">23</span>
+                                        <!-- Ages added here -->
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="promoCode" class="form-label">Promo Code</label>
-                                <input type="text" id="promoCode" class="form-control" placeholder="Enter code">
-                            </div>
+                                <div class="form-group">
+                                    <input type="text" id="promoCode" class="form-control" placeholder="Promo Code">
+                                </div>
 
-                            <button type="submit" class="btn btn-primary btn-block">GET A QUOTE</button>
-                        </form>
+                                <button type="submit" class="btn btn-quote btn-block">GET A QUOTE</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">&copy;2025 Logo Ipsum. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="#privacy" class="footer-link">Privacy Policy</a>
-                <span class="footer-separator">|</span>
-                <a href="#terms" class="footer-link">Terms & Conditions</a>
-            </div>
-        </div>
-    </footer>
+
 
     <script type="module" src="/src/main.js"></script>
 </body>
