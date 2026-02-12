@@ -9,8 +9,7 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, 'index.html'),
                 quote: resolve(__dirname, 'quote.html'),
-                info: resolve(__dirname, 'info.html'),
-                planDetails: resolve(__dirname, 'plan-details.html')
+                info: resolve(__dirname, 'info.html')
             }
         }
     }
